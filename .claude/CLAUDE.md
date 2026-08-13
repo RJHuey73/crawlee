@@ -76,9 +76,9 @@ Crawlee is a **Yarn workspaces monorepo** with Turbo build orchestration. All pa
        ↓
 @crawlee/browser        # BrowserCrawler base
        ↓
-┌──────┴──────┐
-↓             ↓
-@crawlee/playwright  @crawlee/puppeteer
+┌──────┴──────┬──────────────┐
+↓             ↓              ↓
+@crawlee/playwright  @crawlee/puppeteer  @crawlee/stagehand
 
 crawlee                 # Meta-package re-exporting most @crawlee/* packages
 ```
