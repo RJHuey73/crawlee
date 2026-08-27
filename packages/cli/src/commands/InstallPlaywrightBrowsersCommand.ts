@@ -3,6 +3,8 @@ import { execSync } from 'node:child_process';
 import ansiColors from 'ansi-colors';
 import type { ArgumentsCamelCase, Argv, CommandModule } from 'yargs';
 
+import { execBinaryCommand } from '../internals/package-manager';
+
 const envVariable = 'CRAWLEE_SKIP_BROWSER_INSTALL';
 
 interface InstallPlaywrightBrowsersArgs {
@@ -41,7 +43,6 @@ export class InstallPlaywrightBrowsersCommand<T> implements CommandModule<T, Ins
             console.log(ansiColors.green('Installing Playwright browsers...'));
         }
 
-        // TODO: detect package manager
-        execSync(`npx playwright install`, { stdio: 'inherit' });
+        execSync(execBinaryCommand('playwright install'), { stdio: 'inherit' });
     };
 }
