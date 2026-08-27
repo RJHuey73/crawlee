@@ -2,6 +2,8 @@ import { execSync } from 'node:child_process';
 
 import type { ArgumentsCamelCase, Argv, CommandModule } from 'yargs';
 
+import { runScriptCommand } from '../internals/package-manager';
+
 interface RunProjectArgs {
     purge?: boolean;
     script?: string;
@@ -35,7 +37,6 @@ export class RunProjectCommand<T> implements CommandModule<T, RunProjectArgs> {
             env.CRAWLEE_PURGE_ON_START = '0';
         }
 
-        // TODO detect the right package manager (e.g. based on package.json's `packageManager` field)
-        execSync(`npm run ${args.script}`, { stdio: 'inherit', env });
+        execSync(runScriptCommand(args.script!), { stdio: 'inherit', env });
     }
 }
